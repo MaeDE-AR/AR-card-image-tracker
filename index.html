@@ -1,26 +1,40 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Min AR Modell</title>
-    <!-- Den offisielle og korrekte lenken til Googles AR-motor -->
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <style>
-        body { margin: 0; padding: 0; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: #8f8f8f; }
-        model-viewer { width: 100%; height: 100%; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AR Image Tracker</title>
+  <script src="https://aframe.io"></script>
+  <script src="https://jsdelivr.net"></script>
+  <style>
+    body { margin: 0; overflow: hidden; }
+  </style>
 </head>
 <body>
-    <model-viewer 
-        src="cube.glb" 
-        ios-src="cube.usdz" 
-        ar
-        ar-modes="webxr scene-viewer quick-look" 
-        camera-controls 
-        touch-action="pan-y" 
-        alt="En 3D-modell i AR" 
-        shadow-intensity="1">
-    </model-viewer>
+  <a-scene
+    mindar-image="imageTargetSrc: ./targets.mind;"
+    color-space="sRGB"
+    renderer="colorManagement: true, physicallyCorrectLights"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
+
+    <a-assets>
+      <!-- Replace with your own .glb 3D model filename -->
+      <a-asset-item id="myModel" src="./model.glb"></a-asset-item>
+    </a-assets>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- Anchor for the first image in targets.mind (targetIndex: 0) -->
+    
+      <a-gltf-model
+        src="#myModel"
+        position="0 0 0"
+        rotation="0 0 0"
+        scale="0.5 0.5 0.5">
+      </a-gltf-model>
+    
+  </a-scene>
 </body>
 </html>
+
