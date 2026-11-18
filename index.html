@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AR Image Tracker</title>
+  <title>AR Image Tracker Test</title>
   <script src="https://aframe.io"></script>
   <script src="https://jsdelivr.net"></script>
   <style>
@@ -12,29 +12,21 @@
 </head>
 <body>
   <a-scene
-    mindar-image="imageTargetSrc: ./targets.mind;"
+    mindar-image="imageTargetSrc: https://jsdelivr.net;"
     color-space="sRGB"
     renderer="colorManagement: true, physicallyCorrectLights"
     vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
 
     <a-assets>
-      <!-- Replace with your own .glb 3D model filename -->
-      <a-asset-item id="myModel" src="./cube.glb"></a-asset-item>
+      <a-asset-item id="avatarModel" src="https://jsdelivr.net"></a-asset-item>
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- Anchor for the first image in targets.mind (targetIndex: 0) -->
     
-      <a-gltf-model
-        src="#myModel"
-        position="0 0 0"
-        rotation="0 0 0"
-        scale="0.5 0.5 0.5">
-      </a-gltf-model>
+      <a-gltf-model src="#avatarModel" position="0 0 0.1" scale="0.005 0.005 0.005" rotation="0 0 0"></a-gltf-model>
     
   </a-scene>
 </body>
 </html>
-
