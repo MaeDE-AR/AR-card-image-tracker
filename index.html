@@ -1,31 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AR Image Tracker Test</title>
-  <script src="https://aframe.io"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>WebAR Image Tracker</title>
+  <!-- Exact A-Frame + AR.js NFT (Natural Feature Tracking) scripts -->
   <script src="https://jsdelivr.net"></script>
+  <script src="https://githack.com"></script>
+
   <style>
-    body { margin: 0; overflow: hidden; }
+    .arjs-loader {
+      height: 100%; width: 100%; position: absolute; top: 0; left: 0;
+      background-color: rgba(0, 0, 0, 0.85); z-index: 9999;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .arjs-loader div {
+      text-align: center; font-size: 1.25em; color: white; font-family: sans-serif;
+    }
   </style>
 </head>
-<body>
+
+<body style="margin: 0; overflow: hidden;">
+  <!-- Loading overlay while image descriptors load into memory -->
+  <div class="arjs-loader">
+    <div>Loading image descriptors...</div>
+  </div>
+
   <a-scene
-    mindar-image="imageTargetSrc: https://jsdelivr.net;"
-    color-space="sRGB"
-    renderer="colorManagement: true, physicallyCorrectLights"
-    vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false">
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
-    <a-assets>
-      <a-asset-item id="avatarModel" src="https://jsdelivr.net"></a-asset-item>
-    </a-assets>
+    <!-- Replace 'markers/marker' with the path & base name of your 3 .fset/.iset files (NO file extension) -->
+    <a-nft
+      type="nft"
+      url="./markers/marker"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5">
 
-    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+      <!-- 3D content anchored to the image (starts with a simple 3D box so you can verify tracking immediately) -->
+      <a-box position="50 50 -100" scale="80 80 80" color="#4CC3D9"></a-box>
+      
+      
+      
+      -->
+    </a-nft>
 
-    
-      <a-gltf-model src="#avatarModel" position="0 0 0.1" scale="0.005 0.005 0.005" rotation="0 0 0"></a-gltf-model>
     
   </a-scene>
 </body>
